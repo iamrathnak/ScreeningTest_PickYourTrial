@@ -6,36 +6,36 @@ import java.util.Scanner;
  * @Description Class to do stack operations
  */
 public class Superstack {
-	static void superStack(String[] operations) {
-        if (operations == null || operations.length == 0) {
+	static void superStack(String[] stackOperations) {
+        if (stackOperations == null || stackOperations.length == 0) {
             System.out.println("EMPTY");
             return;
         }
-        LinkedList<Integer> list = new LinkedList<>();
-        for (int i = 0; i < operations.length; i++) {
-            String current = operations[i];
-            if (current.equals("pop")) {
-                list.removeLast();
+        LinkedList<Integer> dataList = new LinkedList<>();
+        for (int i = 0; i < stackOperations.length; i++) {
+            String currentEle = stackOperations[i];
+            if (currentEle.equals("pop")) {
+            	dataList.removeLast();
             } else {
-                if (current.startsWith("push")) {
-                    list.addLast(Integer.parseInt(current.split(" ")[1]));
+                if (currentEle.startsWith("push")) {
+                	dataList.addLast(Integer.parseInt(currentEle.split(" ")[1]));
                 } else {
-                    int e = Integer.parseInt(current.split(" ")[1]);
-                    int k = Integer.parseInt(current.split(" ")[2]);
-                    ListIterator<Integer> listIterator = list.listIterator();
+                    int incInitial = Integer.parseInt(currentEle.split(" ")[1]);
+                    int incNext = Integer.parseInt(currentEle.split(" ")[2]);
+                    ListIterator<Integer> listIterator = dataList.listIterator();
                     int j = 1;
                     while (listIterator.hasNext()) {
-                        if (j > e)
+                        if (j > incInitial)
                             break;
-                        listIterator.set(listIterator.next() + k);
+                        listIterator.set(listIterator.next() + incNext);
                         j++;
                     }
                 }
             }
-            if (list.isEmpty())
+            if (dataList.isEmpty())
                 System.out.println("EMPTY");
             else
-                System.out.println(list.getLast());
+                System.out.println(dataList.getLast());
 
         }
 	}
